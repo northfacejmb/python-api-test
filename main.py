@@ -1,7 +1,12 @@
-from fastapi import FastAPI
+import requests
+import json
+response = requests.get('http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow')
 
-app = FastAPI()
+for data in response.json()['items']:
+  if data["answer_count"] == 0:
+    print(data['title'])
+    print(data['link'])
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+  else: 
+    print("skipped")
+  print()
