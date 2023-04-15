@@ -27,3 +27,16 @@ activate:
 
 add dependencies to requirements
 >>> pip3 freeze > requirements.txt
+
+add a new drink
+from application import Drink
+drink = Drink(name="orange soda",description="tastes orange")
+
+commit entries to db
+db.session.add(drink)
+
+
+
+https://python-adv-web-apps.readthedocs.io/en/latest/flask_db3.html
+
+https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
