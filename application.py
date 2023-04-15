@@ -7,8 +7,13 @@ from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
-with app.app_context():
-  db.create_all()
+# with app.app_context():
+#   db.create_all()
+def create_app():
+  app = Flask(__name__)
+  with app.app_context():
+    db.create_all()
+  return app
 
 class Drink(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -16,7 +21,7 @@ class Drink(db.Model):
   description = db.Column(db.String(120))
 
   def __repr__(self):
-    return f"{self.name} - {self.description}"
+    return f"{self.name} -- {self.description} drinkID: {self.id}"
 
 @app.route('/')
 def index():
